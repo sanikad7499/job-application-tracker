@@ -1,0 +1,459 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --ink: #1c2321;
+  --paper: #faf8f3;
+  --paper-raised: #ffffff;
+  --signal: #2f5d50;
+  --signal-dark: #234840;
+  --muted: #7d786a;
+  --border: #e4dfd3;
+  --border-strong: #c9c2b0;
+  --danger: #b5473f;
+
+  --status-applied: #3d5a80;
+  --status-applied-bg: #e9eef5;
+  --status-interviewing: #a06a1f;
+  --status-interviewing-bg: #f7ecd9;
+  --status-offer: #2f5d50;
+  --status-offer-bg: #e3ede9;
+  --status-rejected: #b5473f;
+  --status-rejected-bg: #f6e6e4;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius: 6px;
+  --shadow-card: 0 1px 2px rgba(28, 35, 33, 0.06), 0 1px 0 rgba(28, 35, 33, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 0 0 0.4em 0;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--signal);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+/* ---------- Layout ---------- */
+.app-shell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--border);
+  background: var(--paper-raised);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.brand-mark {
+  color: var(--signal);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.9rem;
+}
+
+.topbar-email {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.auth-main {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 0 24px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--signal);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--signal-dark);
+}
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--border-strong);
+}
+.btn-secondary:hover {
+  background: var(--paper);
+  border-color: var(--ink);
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  color: var(--signal);
+  font-weight: 600;
+  padding: 0;
+  cursor: pointer;
+}
+
+.btn-danger {
+  background: none;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+.btn-danger:hover {
+  background: var(--status-rejected-bg);
+}
+
+/* ---------- Forms ---------- */
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.field-error {
+  color: var(--danger);
+  font-size: 0.82rem;
+  margin-top: 6px;
+}
+
+.form-banner {
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  margin-bottom: 18px;
+}
+
+.form-banner.error {
+  background: var(--status-rejected-bg);
+  color: var(--danger);
+}
+
+.form-banner.success {
+  background: var(--status-offer-bg);
+  color: var(--signal-dark);
+}
+
+/* ---------- Auth card ---------- */
+.auth-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 32px;
+  box-shadow: var(--shadow-card);
+}
+
+.auth-card p.switch {
+  margin-top: 18px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- Status badge (signature element: a stamped ledger mark) ---------- */
+.status-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+  border: 1.5px dashed currentColor;
+  transform: rotate(-1.5deg);
+}
+
+.status-badge.applied {
+  color: var(--status-applied);
+  background: var(--status-applied-bg);
+}
+.status-badge.interviewing {
+  color: var(--status-interviewing);
+  background: var(--status-interviewing-bg);
+}
+.status-badge.offer {
+  color: var(--status-offer);
+  background: var(--status-offer-bg);
+}
+.status-badge.rejected {
+  color: var(--status-rejected);
+  background: var(--status-rejected-bg);
+}
+
+/* ---------- Dashboard ---------- */
+.dashboard-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.dashboard-header p {
+  color: var(--muted);
+  margin: 4px 0 0;
+}
+
+.filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  border: 1px solid var(--border-strong);
+  background: var(--paper-raised);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.filter-chip.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--paper-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.15s ease, transform 0.1s ease;
+}
+
+.app-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.app-card-main .company {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.app-card-main .role {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+.app-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.app-card-date {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+}
+
+.empty-state h3 {
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.loading-state {
+  padding: 40px 0;
+  text-align: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+/* ---------- Detail page ---------- */
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+}
+
+@media (max-width: 720px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .main {
+    padding: 24px 16px 60px;
+  }
+  .topbar {
+    padding: 14px 16px;
+  }
+}
+
+.panel {
+  background: var(--paper-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.panel h3 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.ai-draft-box {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px;
+  white-space: pre-wrap;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  min-height: 80px;
+}
+
+.kind-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
