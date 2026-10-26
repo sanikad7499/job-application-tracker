@@ -117,16 +117,9 @@ One challenge during development was configuring the database connection and aut
 The issue was resolved by configuring the SQLite database, updating the Prisma schema, generating the Prisma client, and running database migrations.
 
 ## Future Improvements
--Deploy the frontend and backend
+Deploy the frontend and backend
 ,Add more detailed job application analytics
 ,Add search and filtering
 ,Add email notifications
 ,Improve AI suggestions
 ,Add profile management
-
-## Installation and Setup
-
-### Clone the repository
-
-```bash
-git clone YOUR_REPOSITORY_URL
